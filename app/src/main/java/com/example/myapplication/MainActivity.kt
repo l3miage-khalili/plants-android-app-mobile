@@ -24,15 +24,20 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        // injecter le fragment (fragment_container) dans notre boite
-        /*
-        * supportFragmentManager gère les fragments sur android
-        * beginTransaction() commence une série des opérations pour pouvoir manipuler
-        * les fragments
-        * */
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, HomeFragment(this))
-        transaction.addToBackStack(null)
-        transaction.commit()
+        // chargement du repository
+        val repo = PlantRepository()
+
+        // charge et met à jour la liste des plantes, son contenu est excécuté comme callback après le chargement de la liste
+        repo.updateData{
+            // injecte le fragment (fragment_container) dans notre boite
+            /*
+            * supportFragmentManager gère les fragments sur android
+            * beginTransaction() commence une série des opérations pour pouvoir manipuler les fragments
+            * */
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container, HomeFragment(this))
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
     }
 }

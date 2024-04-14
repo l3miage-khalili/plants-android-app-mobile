@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplication.MainActivity
 import com.example.myapplication.PlantModel
+import com.example.myapplication.PlantRepository
 import com.example.myapplication.R
 
 class PlantAdapter(
@@ -39,6 +40,9 @@ class PlantAdapter(
         // recupération de la plante à la position position
         val currentPlant = plantList[position]
 
+        // récupération du repository
+        val repo = PlantRepository()
+
         // utilisation de glide afin de récupérer l'image correspondant à la plante
         Glide.with(context).load(Uri.parse(currentPlant.imageUrl)).into(holder.plantImage)
 
@@ -54,6 +58,14 @@ class PlantAdapter(
         }
         else{
             holder.starIcon.setImageResource(R.drawable.ic_unlike)
+        }
+
+        // rajout de l'interaction sur l'étoile
+        holder.starIcon.setOnClickListener{
+            // inverse l'état de l'étoile
+            currentPlant.isLiked = !currentPlant.isLiked
+            // met à jour l'objet plant
+            repo.updatePlant(currentPlant)
         }
     }
 
