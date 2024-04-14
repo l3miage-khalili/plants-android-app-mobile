@@ -10,11 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.myapplication.MainActivity
 import com.example.myapplication.PlantModel
+import com.example.myapplication.PlantPopup
 import com.example.myapplication.PlantRepository
 import com.example.myapplication.R
 
 class PlantAdapter(
-    private val context: MainActivity,
+    val context: MainActivity,
     private val plantList: List<PlantModel>,
     private val layoutId: Int
 ) : RecyclerView.Adapter<PlantAdapter.ViewHolder>() {
@@ -66,6 +67,12 @@ class PlantAdapter(
             currentPlant.isLiked = !currentPlant.isLiked
             // met à jour l'objet plant
             repo.updatePlant(currentPlant)
+        }
+
+        // interaction lors d'un clique sur une plante
+        holder.itemView.setOnClickListener{
+            // affichage de la popup
+            PlantPopup(this, currentPlant).show()
         }
     }
 

@@ -51,4 +51,7 @@ class PlantRepository {
 
     // met à jour un objet PlantModel dans la base des données
     fun updatePlant(plant:PlantModel) = databaseRef.child(plant.id).setValue(plant)
+
+    // supprime une plante de la base
+    fun deletePlant(plant: PlantModel) = databaseRef.child(plant.id).removeValue()
 }
