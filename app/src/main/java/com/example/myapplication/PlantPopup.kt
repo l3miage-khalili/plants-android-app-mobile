@@ -58,6 +58,7 @@ class PlantPopup(
             // suppression de la plante de la BDD
             val repo = PlantRepository()
             repo.deletePlant(currentPlant)
+            // fermeture de la fenêtre
             dismiss()
         }
     }

@@ -5,6 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.myapplication.fragments.CollectionFragment
 import com.example.myapplication.fragments.HomeFragment
 
 class MainActivity : AppCompatActivity() {
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity() {
             * beginTransaction() commence une série des opérations pour pouvoir manipuler les fragments
             * */
             val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container, HomeFragment(this))
+            transaction.replace(R.id.fragment_container, CollectionFragment(this))
             transaction.addToBackStack(null)
             transaction.commit()
         }
