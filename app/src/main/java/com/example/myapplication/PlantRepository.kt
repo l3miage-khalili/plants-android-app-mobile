@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.net.Uri
 import com.example.myapplication.PlantRepository.Singleton.databaseRef
+import com.example.myapplication.PlantRepository.Singleton.downloadUri
 import com.example.myapplication.PlantRepository.Singleton.plantList
 import com.example.myapplication.PlantRepository.Singleton.storageRef
 import com.google.android.gms.tasks.Continuation
@@ -32,6 +33,9 @@ class PlantRepository {
 
         // création d'une liste qui va contenir les plantes
         val plantList = arrayListOf<PlantModel>()
+
+        // lien de l'image courante
+        var downloadUri: Uri? = null
     }
 
     // charge et met à jour les données depuis la databaseRef et les donnes à liste plantList
@@ -64,8 +68,8 @@ class PlantRepository {
         })
     }
 
-    // envoie des fichiers sur le storage
-    fun uploadImage(file: Uri){
+    // envoie des fichiers images sur le storage
+    fun uploadImage(file: Uri, callback: () -> Unit){
         // vérifie que le fichier est valide
         if(file != null){
             // génération d'un identifiant sous forme de texte (nom du fichier)
@@ -86,13 +90,15 @@ class PlantRepository {
                 // vérifie si tout a bien fonctionné
                 if(task.isSuccessful){
                     // recupération de l'image
-                    val downloadURI = task.result
+                    downloadUri = task.result
+                    callback()
                 }
             }
         }
     }
 
-    // met à jour un objet PlantModel dans la base des données
+    // met à jour un objet PlantModel dans la base des données s'il existe déjà
+    // sinon elle l'insert tout simplement
     fun updatePlant(plant:PlantModel) = databaseRef.child(plant.id).setValue(plant)
 
     // supprime une plante de la base
