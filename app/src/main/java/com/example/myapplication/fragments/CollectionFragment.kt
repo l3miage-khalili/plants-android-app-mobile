@@ -15,7 +15,6 @@ import com.example.myapplication.adapter.PlantItemDecoration
 
 class CollectionFragment(
     private val context:MainActivity
-
 ) : Fragment(){
     override fun onCreateView(
         inflater: LayoutInflater,
