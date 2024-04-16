@@ -12,7 +12,7 @@
 
     <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />
 
-    <!-- Creer le composant texte par défaut -->
+    <!-- Crée le composant texte par défaut -->
     <!-- ici composant designe un ensemble des propriétés et name designe son nom -->
     <style name="DefaultTextStyle">
         <item name="android:textColor">@color/lightGray</item>
@@ -20,15 +20,14 @@
         <item name="android:fontFamily">@font/kanit</item>
     </style>
 
-    <!-- Creer le composant sous titre par défaut -->
+    <!-- Crée le composant sous titre par défaut -->
     <style name="SubtitleTextStyle" parent="DefaultTextStyle">
         <item name="android:textColor">@color/darkGray</item>
     </style>
 
-    <!-- Creer le composant titre par défaut -->
+    <!-- Crée le composant titre par défaut -->
     <style name="TitleTextStyle" parent="SubtitleTextStyle">
         <item name="android:textSize">24sp</item>
     </style>
-
 
 </resources>
